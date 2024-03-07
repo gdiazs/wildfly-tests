@@ -27,7 +27,7 @@ public class DefaultEjbService
     @PostConstruct
     public void simulatedListener()
     {
-        //Java SE executor service is JDK level. ManagedExecutorService should be used as long is managed by the Jakarta EE CDI container, in this case Wildfly
+        //Java SE executor service is JDK level. ManagedExecutorService should be used as long is managed by the Jakarta EE container, in this case Wildfly
         //final ExecutorService executorService = Executors.newFixedThreadPool( 10 );
 
         while ( true )
