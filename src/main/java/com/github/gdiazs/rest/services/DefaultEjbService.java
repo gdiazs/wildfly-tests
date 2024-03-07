@@ -16,10 +16,7 @@ import java.util.logging.Logger;
 @Singleton
 public class DefaultEjbService
 {
-
     private final static Logger LOGGER = Logger.getLogger( DefaultEjbService.class.getName() );
-
-
 
     @Inject
     private ScopedService scopedService;
@@ -49,7 +46,7 @@ public class DefaultEjbService
         {
             Thread.sleep( 1000 );
             Thread currentThread = Thread.currentThread();
-            LOGGER.log( Level.INFO, "Thread name= " + currentThread.getName() );
+            LOGGER.log( Level.INFO, String.format( "Thread name= %s", currentThread.getName()));
         }
         catch ( InterruptedException e )
         {
