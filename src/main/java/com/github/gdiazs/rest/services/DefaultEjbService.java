@@ -21,16 +21,20 @@ public class DefaultEjbService
     @Inject
     private ScopedService scopedService;
 
+    @Resource
+    ManagedExecutorService managedExecutorService;
+
     @PostConstruct
     public void simulatedListener()
     {
         //Java SE executor service is JDK level. ManagedExecutorService should be used as long is managed by the Jakarta EE CDI container, in this case Wildfly
-        final ExecutorService executorService = Executors.newFixedThreadPool( 10 );
+        //final ExecutorService executorService = Executors.newFixedThreadPool( 10 );
+
         while ( true )
         {
             threadDetails();
-            executorService.execute( () -> {
-                //Dangerous code, out of scope
+           // executorService.execute( () -> {
+            managedExecutorService.execute( () -> {
                 threadDetails();
                 boolean result = scopedService.isThisMethodWorking();
                 LOGGER.log( Level.INFO, "was method invoked?: %s", result);
